@@ -63,3 +63,12 @@
   color: var(--quartanary);
   margin-bottom: 8px;
 }
+.blog-preview button{
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  background: var(--quartanary);
+  color: white;
+  border: 1px solid black;
+  outline: none;
+}

@@ -28,15 +28,12 @@ const handleDelete =(id) =>{
     return ( 
         <div className="homes">
         <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete} />
+        
+        
+        
         {/* <BlogList blogs={blogs.filter((blogs)=>
             blogs.author==='mario'
         )} title="Marios blogs" /> */}
-
-
-
-
-
-
         {/* <h2>Home</h2>
         <p>{name} is {age} year old</p>
         <button onClick={handlecheck}>Click me</button> */}
