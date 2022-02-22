@@ -1,5 +1,5 @@
 // import classes from '../cssmodules/Home.module.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import BlogList from './BlogList';
 const Home = () => {
     // const handlecheck =(e) =>{
@@ -22,9 +22,14 @@ const [blogs,setBlogs] = useState([
 ]);
 
 const handleDelete =(id) =>{
-    const newBlogs = blogs.filter( blogs =>blogs.id !==id );
+    
+    const newBlogs = blogs.filter( item =>item.id !==id );
+    // console.log(newBlogs);
     setBlogs(newBlogs)
 }
+useEffect(()=>{
+    console.log("use effect ran")
+},[]);
     return ( 
         <div className="homes">
         <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete} />
