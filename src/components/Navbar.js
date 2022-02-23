@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 const Navbar = () => {
  const style={
   color:"white",
@@ -10,16 +11,16 @@ const Navbar = () => {
         <h1>The Dojo blog</h1>    
         </div>
         <div className="item">
-      <a href="/" style={style}>
+      <Link to="/" style={style}>
         <p>Home</p>
-      </a>
-      <a href="/create" style={{
+      </Link>
+      <Link to="/create" style={{
         color:"white",           //inline css//
         backgroundColor:"#f1356d",//Camelcasing javascript//
         border:0,
       }}>
         <p>Create</p>
-      </a>
+      </Link>
       </div>
     </nav>
   );

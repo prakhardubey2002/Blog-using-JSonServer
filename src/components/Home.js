@@ -1,6 +1,7 @@
 // import classes from '../cssmodules/Home.module.css';
-import { useState,useEffect } from 'react';
+import useFect from './useFetch'
 import BlogList from './BlogList';
+import useFetch from './useFetch';
 const Home = () => {
     // const handlecheck =(e) =>{
     //     console.log('hello Ninja',e) //event take i function with onClick
@@ -20,30 +21,30 @@ const Home = () => {
 //     // console.log(newBlogs);
 //     setBlogs(newBlogs)
 // }
-const [blogs,setBlogs] = useState(null);
-const [isPending,setisPending] = useState(true);
-const [error,setError] =useState(null);
-useEffect(()=>{
-    fetch('http://localhost:8000/blogs')
-    .then(res =>{
-        if(!res.ok){
-            throw Error('Could not intiate request')
-        }
-       return res.json();
-    })
-    .then(data =>{
-        // console.log(data);
-        setBlogs(data);
-        setisPending(false);
-        setError(null);
-    })
-    .catch(err =>{
-        setisPending(false);
-        setError(err.message);
-        console.log(err.message);
-    });
-    },[]);//only once called becausre of empty array [] at end of useeffect
-   
+// const [blogs,setBlogs] = useState(null);
+// const [isPending,setisPending] = useState(true);
+// const [error,setError] =useState(null);
+// useEffect(()=>{
+//     fetch('http://localhost:8000/blogs')
+//     .then(res =>{
+//         if(!res.ok){
+//             throw Error('Could not intiate request')
+//         }
+//        return res.json();
+//     })
+//     .then(data =>{
+//         // console.log(data);
+//         setBlogs(data);
+//         setisPending(false);
+//         setError(null);
+//     })
+//     .catch(err =>{
+//         setisPending(false);
+//         setError(err.message);
+//         console.log(err.message);
+//     });
+//     },[]);//only once called becausre of empty array [] at end of useeffect
+   const {data:blogs,isPending,error} =useFetch('http://localhost:8000/blogs')
   
     return ( 
         <div className="homes">
