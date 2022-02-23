@@ -14,28 +14,44 @@ const Home = () => {
 //     setName('Luigi');
 //     setAge(30);
 // }
-const [blogs,setBlogs] = useState([
-    {title:'My new website ',body:'lorem ipsum dolor sit amit',author:'mario', id:1},
-    {title:'Welcome party ',body:'lorem ipsum dolor sit amit',author:'yoshi', id:2},
-    {title:'Web dev top tips ',body:'lorem ipsum dolor sit amit',author:'mario', id:3},
-    {title:'Web maroon UI ',body:'lorem ipsum dolor sit amit',author:'mario', id:4}
-]);
-
-const handleDelete =(id) =>{
+// const handleDelete =(id) =>{
     
-    const newBlogs = blogs.filter( item =>item.id !==id );
-    // console.log(newBlogs);
-    setBlogs(newBlogs)
-}
+//     const newBlogs = blogs.filter( item =>item.id !==id );
+//     // console.log(newBlogs);
+//     setBlogs(newBlogs)
+// }
+const [blogs,setBlogs] = useState(null);
+const [isPending,setisPending] = useState(true);
+const [error,setError] =useState(null);
 useEffect(()=>{
-    console.log("use effect ran")
-},[]);
+    fetch('http://localhost:8000/blogs')
+    .then(res =>{
+        if(!res.ok){
+            throw Error('Could not intiate request')
+        }
+       return res.json();
+    })
+    .then(data =>{
+        // console.log(data);
+        setBlogs(data);
+        setisPending(false);
+        setError(null);
+    })
+    .catch(err =>{
+        setisPending(false);
+        setError(err.message);
+        console.log(err.message);
+    });
+    },[]);//only once called becausre of empty array [] at end of useeffect
+   
+  
     return ( 
         <div className="homes">
-        <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete} />
-        
-        
-        
+        {error && <div>{error}</div>}
+        {isPending && <div>Loading....</div>}
+        { blogs && <BlogList blogs={blogs} title="All blogs" />} 
+        {/* here Logical and is used because if page render with intaila value of null there will be rror so when logical end is intaiated it will check from left if value are true then only second statement is executed as for logical and to work side should ne non-null value  */}
+     
         {/* <BlogList blogs={blogs.filter((blogs)=>
             blogs.author==='mario'
         )} title="Marios blogs" /> */}
