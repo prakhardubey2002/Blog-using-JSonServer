@@ -72,3 +72,7 @@
   border: 1px solid black;
   outline: none;
 }
+.blog-preview a{
+  text-decoration: none;
+  color: inherit;
+}
